@@ -1,254 +1,115 @@
-# Diversification Lab: Build Your AI Portfolio
+# Diversification Lab: Build Your First Harness
 
-You're going to experience **related diversification** by building one.
+Today you're going to **build your first AI harness** — a system where your agent connects to a new specialist AI and learns when to use it.
 
-Your group already uses different AI tools (Claude, ChatGPT, Gemini). Today you'll connect a **new specialist AI** and figure out when a diversified portfolio creates value vs. when it's just overhead.
-
-This is the same decision a CEO faces: **Should we acquire this company, or are we fine on our own?**
+This is **related diversification in action.** Your agent is the core business. The free API is the acquisition. The config file you write is your corporate strategy.
 
 ---
 
-## Setup (Do This BEFORE Class)
+## The Activity
 
-There are two parts: getting your **bridge** working (everyone) and making sure your **AI agent** works (depends on your tool).
+### Phase 1: Scout Your Target (3 min)
 
-### Part 1: The Bridge (Everyone Does This)
+Open [FREE_AI_MENU.md](FREE_AI_MENU.md) and pick one free AI to connect to.
 
-The bridge is a tiny script that calls a free AI (Cerebras). Think of it as **acquiring a specialist company**. No installs needed beyond what you already have.
+| | Cerebras | Mistral | Google AI Studio | Groq |
+|---|---|---|---|---|
+| **Best at** | Speed (<1 sec) | Code & structure | Huge context | Open-source models |
+| **Sign up** | cloud.cerebras.ai | console.mistral.ai | aistudio.google.com | console.groq.com |
 
-#### Step 1: Confirm Node.js works
-
-You should already have Node.js from the vibe coding activity (Chapter 7). Open a terminal and type:
-```
-node --version
-```
-
-You should see something like `v20.x.x` or `v22.x.x`. If you get an error, see [Troubleshooting](#troubleshooting).
-
-#### Step 2: Get your free Cerebras API key
-
-1. Go to **https://cloud.cerebras.ai**
-2. Click **Sign Up** (use your school email or personal email)
-3. Once logged in, click **API Keys** in the left sidebar
-4. Click **Create API Key**
-5. **Copy the key** (it starts with `csk-`)
-
-#### Step 3: Set your API key
-
-**Windows Command Prompt:**
-```
-set CEREBRAS_API_KEY=csk-paste-your-key-here
-```
-
-**Windows PowerShell:**
-```
-$env:CEREBRAS_API_KEY="csk-paste-your-key-here"
-```
-
-**Mac/Linux Terminal:**
-```
-export CEREBRAS_API_KEY=csk-paste-your-key-here
-```
-
-**IMPORTANT:** You must set this key every time you open a new terminal window. If the bridge stops working, this is probably why.
-
-#### Step 4: Download the lab files
-
-**Option A — Git clone (if you have git):**
-```
-git clone https://github.com/iamstevenhyde/Diversification-Lab.git
-cd Diversification-Lab
-```
-
-**Option B — Download ZIP:**
-Go to https://github.com/iamstevenhyde/Diversification-Lab, click the green **Code** button, click **Download ZIP**, unzip it, and open a terminal in that folder.
-
-#### Step 5: Test it
-
-```
-node bridge.js "What is related diversification in one sentence?"
-```
-
-**If it works:** You'll see a response in under 1 second with a speed timer at the bottom. You're ready.
-
-**If it doesn't work:** See [Troubleshooting](#troubleshooting) at the bottom.
-
-> **Alternative:** If you have Python but not Node.js, you can use `node bridge.js` instead of `node bridge.js`. Both do the same thing.
+**Pick one. 30 seconds. Gut instinct.** There is no wrong answer — different companies acquire different specialists based on their strategy.
 
 ---
 
-### Part 2: Your AI Agent (Depends on What You Use)
+### Phase 2: Integrate (12 min)
 
-You need to be able to ask your AI a question. Pick whichever one you already have set up:
+Open your AI agent (Claude Code, Codex, Gemini CLI, or even claude.ai / chatgpt.com in a browser) and give it this prompt. Fill in the blanks with your choice:
 
-#### If you use Claude Code (terminal)
-```
-claude -p "What is related diversification?"
-```
-If `claude` isn't installed: `npm install -g @anthropic-ai/claude-code` (requires Node.js 18+)
+> I want to connect to the **[Cerebras / Mistral / Google AI Studio / Groq]** API. It's free — sign up at **[URL from the menu]**.
+>
+> Help me:
+> 1. Sign up and get an API key (walk me through it step by step)
+> 2. Write a script that calls their API with a prompt and prints the response with timing
+> 3. Set up the API key in my terminal
+> 4. Test it by analyzing this: "Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273M in revenue and 50% EBITDA margins. Was this related diversification? Did it pass the better-off test?"
+>
+> I'm on Windows using [Command Prompt / PowerShell / Git Bash]. I have Node.js installed.
 
-#### If you use Codex (terminal)
-```
-codex exec "What is related diversification?"
-```
-If `codex` isn't installed: `npm install -g @openai/codex` (requires Node.js). Note: Windows users may need WSL.
+**Then follow your agent's instructions.** It will write the code. It will tell you where to sign up. It will help you set the key. It will debug when things break.
 
-#### If you use Gemini CLI (terminal)
-```
-gemini -p "What is related diversification?"
-```
-If `gemini` isn't installed: `npm install -g @google/gemini-cli` (requires Node.js 20+). **Free** with a Google account.
+Your only manual steps: sign up on the website, copy the API key, paste it back.
 
-#### If none of the above work (fallback)
-Just use the web version of your AI:
-- **Claude:** https://claude.ai
-- **ChatGPT:** https://chatgpt.com
-- **Gemini:** https://gemini.google.com
-
-You can still do the full activity. You'll just type the prompts into your browser instead of the terminal.
+**If things break:** That's normal. Ask your agent to fix it. That's what agents do. And that's what post-merger integration feels like.
 
 ---
 
-## In-Class Activity
+### Phase 3: Write Your Strategy (5 min)
 
-### Your Group
-Each group has members using different AI tools. That means you already have a **diversified AI portfolio** and didn't realize it.
+Now tell your agent:
 
----
+> Write me a config file for this project folder. [If using Claude Code: write a CLAUDE.md. If using Codex: write an AGENTS.md. If using Gemini: write a GEMINI.md.]
+>
+> Include rules for when you should use **[your chosen API]** vs. handling tasks yourself. Think about:
+> - What is the API good at? (speed? code? large documents?)
+> - What are YOU better at? (reasoning? creativity? multi-step analysis?)
+> - When should you route to the specialist vs. do the work yourself?
+> - What happens if the API goes down or runs out of free credits?
 
-### Phase 1: The Baseline (7 min)
-**4P Mode: Processor** — AI generates, you evaluate
-
-Each person runs this **exact same prompt** through their own AI:
-
-> Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273M in revenue and 50% EBITDA margins. Disney's internal animation was struggling. Was this related diversification, and did it pass the better-off test? Give me a 3-paragraph analysis.
-
-**Compare across your group:**
-- Which AI was fastest?
-- Which gave the best analysis?
-- Did they disagree on anything?
-- Did anyone get something flat-out wrong?
-
-Write down the differences. This is your **pre-integration baseline** — what your portfolio looks like before the acquisition.
+**Read what your agent writes.** Edit it if you disagree. This is YOUR corporate strategy document — the rules about how your diversified AI portfolio operates.
 
 ---
 
-### Phase 2: Add the Specialist (5 min)
-**4P Mode: Planner** — You direct, AI executes
+### Phase 4: Test Your Strategy (5 min)
 
-Now run the same prompt through the Cerebras bridge:
+With your config file active, try these tasks and see if the routing makes sense:
 
-```
-node bridge.js "Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273M in revenue and 50% EBITDA margins. Disney's internal animation was struggling. Was this related diversification, and did it pass the better-off test? Give me a 3-paragraph analysis."
-```
+1. **A quick lookup:** "Define vertical integration in one sentence"
+2. **A calculation:** "A company has $200M EBITDA. At a 10x multiple, what's the enterprise value? If synergies are worth $50M/year for 5 years at a 10% discount rate, what's the max acquisition price?"
+3. **A strategic analysis:** "Should Amazon have acquired Whole Foods for $13.7B? Apply the better-off test and cost-of-entry test."
 
-**Compare to your baseline:**
-- Speed: Cerebras responds in under 1 second. Your agent probably took 10-30 seconds.
-- Quality: Is the analysis better, worse, or different?
-- **Does this "acquisition" pass YOUR better-off test?** Is the speed advantage worth the setup effort?
-
----
-
-### Phase 3: The Router (10 min)
-**4P Mode: Prospector** — You explore, AI assists
-
-Run the smart router:
-```
-node router.js
-```
-
-Try three different types of tasks:
-1. A quick definition: `Define horizontal integration`
-2. A calculation: `Calculate the enterprise value of a company with $500M EBITDA at a 12x multiple`
-3. A strategic question: `Should a gym chain acquire a meditation app? Analyze the synergies`
-
-**Group discussion:**
-- Open `router.js` in a text editor and look at the routing table (lines 30-50). Does this routing strategy make sense?
-- When would you route to a FAST model vs. a SMART model?
-- What happens when a model you depend on goes down? (This actually happened — the system used to route to Groq, but Groq ran out of free credits. Sound familiar from the lecture?)
-- **How is this routing decision the same as corporate headquarters deciding which business unit handles which market?**
-
----
-
-### Phase 4: The Meta-Question (5 min)
-**4P Mode: Portal** — AI surfaces what you didn't think of
-
-Ask your main AI (whichever tool you use):
-
-> I built a system that routes different tasks to different AI models based on task type. Fast models handle simple tasks, powerful models handle complex analysis. One of the models (Groq) ran out of free credits and had to be replaced. How is managing a portfolio of AI models like managing a diversified company? What are the parallels to related diversification, and what risks does a multi-model strategy have that a single-model strategy doesn't?
-
-Read the response as a group. **The AI's answer IS the lesson.**
+**Does your strategy work?** Did the specialist add value? Or would one AI have been fine?
 
 ---
 
 ## Debrief Questions
 
-Discuss as a group:
+Discuss with your group:
 
-1. **Better-off test:** Was your analysis better with 4 AI models than with just 1? When specifically?
+1. **Read your config file out loud.** What routing rules did you write? That's your corporate strategy.
 
-2. **Cost-of-entry test:** Was the time setting up the bridge + API key worth the benefit? What's the "acquisition cost" of adding a new AI?
+2. **Better-off test:** Was the specialist actually better for any tasks? Which ones?
 
-3. **Shared resources:** What do all your AI models share? (Same prompts, same data, same user.) How is that like shared resources in a diversified firm?
+3. **Cost-of-entry test:** Was the signup + integration time worth it? What's the "acquisition cost" of adding a new AI?
 
-4. **Integration risk:** Did anything fail? A key not work? A model give bad output? How is that like post-merger integration challenges?
+4. **Integration risk:** What broke? How did your agent fix it? How is that like post-merger integration?
 
-5. **When to outsource vs. integrate:** For which tasks would ONE good AI be better than juggling four? When does diversification destroy value?
+5. **Strategic choice:** Who in your group picked the same API? Who picked differently? Why? (There's no single right diversification strategy.)
 
 ---
 
-## Files in This Repo
+## What You Walk Out With
 
-| File | What It Is |
-|------|-----------|
-| `bridge.js` | Calls Cerebras AI — the "specialist acquisition" (Node.js) |
-| `router.js` | Routes tasks to different models — the "corporate headquarters" (Node.js) |
-| `bridge.py` | Same as bridge.js but in Python (use if you don't have Node) |
-| `router.py` | Same as router.js but in Python (use if you don't have Node) |
-| `deals/` | Real M&A deal data (Disney+Pixar, Amazon+Whole Foods, Google+Fitbit) |
-| `README.md` | You're reading it |
+You now have a **working AI harness** with:
+- Your main agent (the core business)
+- A specialist API connection (the acquisition)
+- A config file with routing rules (the corporate strategy)
+
+This is yours to keep and build on. Add more APIs. Refine your routing rules. That's how a diversified company evolves.
 
 ---
 
 ## Stretch Goals (If You Finish Early)
 
-- **Add a second bridge:** Sign up at https://console.mistral.ai (free), get an API key, and modify `bridge.py` to call Mistral instead of Cerebras. Now you have 5 models. Was the second acquisition worth it?
-- **Modify the router:** Open `router.js` in a text editor and change the routing table. Add new task categories. What would YOUR corporate strategy look like?
-- **Analyze a real deal:** Use your agent to read one of the files in `deals/` and run a full better-off test with synergy NPV calculations.
-- **Break it on purpose:** Unset your API key (`set CEREBRAS_API_KEY=`) and run the bridge again. That's what synergy decay looks like.
+- **Second acquisition:** Sign up for a SECOND free API from the menu. Add it to your config file. Is the second acquisition worth it, or is it just complexity?
+- **Analyze a real deal:** Ask your agent to read one of the files in `deals/` and run a full better-off test with synergy NPV calculations.
+- **Compare across your group:** Have everyone run the same prompt through their specialist. Whose "acquisition" created the most value?
 
 ---
 
-## Troubleshooting
+## If Things Go Wrong
 
-### "node is not recognized"
-You need Node.js. You should have it from the vibe coding activity (Chapter 7). If not:
-- **Windows:** Download from https://nodejs.org (LTS version). Install, then restart your terminal.
-- **Mac:** `brew install node` or download from https://nodejs.org
-- **Fallback:** Try `python bridge.py` instead. If you have Python, the Python versions work identically.
+**Your agent is your first line of support.** If something breaks, tell your agent: "I got this error: [paste error]. Help me fix it."
 
-### "CEREBRAS_API_KEY not set"
-You need to set the key **every time you open a new terminal window**. Run the `set` or `export` command from Step 3 again. This is the #1 issue people hit.
+That's not a workaround — that's **Processor mode** (AI handles routine problem-solving while you focus on the strategic decision). Using your AI to fix your AI integration is itself a lesson about leveraging existing capabilities.
 
-### "API Error 401"
-Your API key is wrong. Go back to https://cloud.cerebras.ai, check your key, copy it again carefully.
-
-### "API Error 403" or "error code: 1010"
-Cloudflare is blocking the request. This sometimes happens on campus WiFi. Try:
-- Using your phone as a hotspot
-- Asking a group member whose connection works to demo it
-
-### "API Error 429"
-Rate limited. You've sent too many requests too fast. Wait 30 seconds and try again.
-
-### "git is not recognized"
-Use Option B (download ZIP) from the setup instructions instead.
-
-### The bridge works but my CLI agent doesn't
-That's fine! Use the web version of your AI (claude.ai, chatgpt.com, or gemini.google.com) for Phases 1 and 4. The bridge is the main activity.
-
-### Nothing works at all
-Pair up with someone in your group whose setup is working. Watch what they do. The observation is still valuable — and the fact that integration failed IS the lesson about diversification risk.
-
-### Something else broke
-Copy your error message and paste it into whatever AI you have access to (even just claude.ai or chatgpt.com in a browser). Say: *"I'm trying to run `node bridge.js` and got this error. How do I fix it on Windows."* Your AI can probably solve it faster than anyone in the room. **That's Processor mode in action.**
+If your agent can't fix it, pair with someone whose setup is working. The observation is still valuable — and integration failure IS the lesson about diversification risk.
