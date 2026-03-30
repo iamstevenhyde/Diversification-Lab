@@ -59,15 +59,20 @@ Now tell your agent:
 
 ---
 
-### Phase 4: Test Your Strategy (5 min)
+### Phase 4: Analyze a Real Deal (5 min)
 
-With your config file active, try these tasks and see if the routing makes sense:
+Find a real acquisition. Any deal you know about or can Google in 10 seconds. Some ideas if you're stuck: Microsoft + LinkedIn, Amazon + Whole Foods, Google + YouTube, Meta + Instagram, Adobe + Figma.
 
-1. **A quick lookup:** "Define vertical integration in one sentence"
-2. **A calculation:** "A company has $200M EBITDA. At a 10x multiple, what's the enterprise value? If synergies are worth $50M/year for 5 years at a 10% discount rate, what's the max acquisition price?"
-3. **A strategic analysis:** "Should Amazon have acquired Whole Foods for $13.7B? Apply the better-off test and cost-of-entry test."
+Tell your agent:
 
-**Does your strategy work?** Did the specialist add value? Or would one AI have been fine?
+> Research [Company A]'s acquisition of [Company B]. Using the frameworks from class, analyze:
+> - What type of integration is this? (horizontal, vertical, related diversification, unrelated?)
+> - Does it pass the better-off test? What capabilities are shared?
+> - Estimate the synergies. Calculate the NPV at a 10% discount rate over 5 years.
+> - Does it pass the cost-of-entry test? Did they overpay?
+> Use my specialist API for any quick data lookups.
+
+**Watch what happens.** Does your harness route tasks to the specialist? Does the config file you wrote actually work? Did the specialist add value, or would one AI have been fine?
 
 ---
 
