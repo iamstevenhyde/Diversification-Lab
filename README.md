@@ -14,18 +14,16 @@ There are two parts: getting your **bridge** working (everyone) and making sure 
 
 ### Part 1: The Bridge (Everyone Does This)
 
-The bridge is a tiny Python script that calls a free AI (Cerebras). Think of it as **acquiring a specialist company**.
+The bridge is a tiny script that calls a free AI (Cerebras). Think of it as **acquiring a specialist company**. No installs needed beyond what you already have.
 
-#### Step 1: Check that Python works
+#### Step 1: Confirm Node.js works
 
-Open a terminal (Command Prompt, PowerShell, or Terminal) and type:
+You should already have Node.js from the vibe coding activity (Chapter 7). Open a terminal and type:
 ```
-python --version
+node --version
 ```
 
-You should see something like `Python 3.11.5`. If you get an error:
-- **Windows:** Go to https://python.org/downloads, download, install. CHECK the box that says "Add Python to PATH"
-- **Mac:** Python 3 is usually pre-installed. Try `python3 --version` instead
+You should see something like `v20.x.x` or `v22.x.x`. If you get an error, see [Troubleshooting](#troubleshooting).
 
 #### Step 2: Get your free Cerebras API key
 
@@ -68,12 +66,14 @@ Go to https://github.com/iamstevenhyde/Diversification-Lab, click the green **Co
 #### Step 5: Test it
 
 ```
-python bridge.py "What is related diversification in one sentence?"
+node bridge.js "What is related diversification in one sentence?"
 ```
 
 **If it works:** You'll see a response in under 1 second with a speed timer at the bottom. You're ready.
 
 **If it doesn't work:** See [Troubleshooting](#troubleshooting) at the bottom.
+
+> **Alternative:** If you have Python but not Node.js, you can use `node bridge.js` instead of `node bridge.js`. Both do the same thing.
 
 ---
 
@@ -139,7 +139,7 @@ Write down the differences. This is your **pre-integration baseline** — what y
 Now run the same prompt through the Cerebras bridge:
 
 ```
-python bridge.py "Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273M in revenue and 50% EBITDA margins. Disney's internal animation was struggling. Was this related diversification, and did it pass the better-off test? Give me a 3-paragraph analysis."
+node bridge.js "Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273M in revenue and 50% EBITDA margins. Disney's internal animation was struggling. Was this related diversification, and did it pass the better-off test? Give me a 3-paragraph analysis."
 ```
 
 **Compare to your baseline:**
@@ -154,7 +154,7 @@ python bridge.py "Disney acquired Pixar for $7.4 billion in 2006. Pixar had $273
 
 Run the smart router:
 ```
-python router.py
+node router.js
 ```
 
 Try three different types of tasks:
@@ -163,7 +163,7 @@ Try three different types of tasks:
 3. A strategic question: `Should a gym chain acquire a meditation app? Analyze the synergies`
 
 **Group discussion:**
-- Open `router.py` in a text editor and look at the routing table (lines 30-50). Does this routing strategy make sense?
+- Open `router.js` in a text editor and look at the routing table (lines 30-50). Does this routing strategy make sense?
 - When would you route to a FAST model vs. a SMART model?
 - What happens when a model you depend on goes down? (This actually happened — the system used to route to Groq, but Groq ran out of free credits. Sound familiar from the lecture?)
 - **How is this routing decision the same as corporate headquarters deciding which business unit handles which market?**
@@ -201,8 +201,10 @@ Discuss as a group:
 
 | File | What It Is |
 |------|-----------|
-| `bridge.py` | Calls Cerebras AI — the "specialist acquisition" |
-| `router.py` | Routes tasks to different models — the "corporate headquarters" |
+| `bridge.js` | Calls Cerebras AI — the "specialist acquisition" (Node.js) |
+| `router.js` | Routes tasks to different models — the "corporate headquarters" (Node.js) |
+| `bridge.py` | Same as bridge.js but in Python (use if you don't have Node) |
+| `router.py` | Same as router.js but in Python (use if you don't have Node) |
 | `deals/` | Real M&A deal data (Disney+Pixar, Amazon+Whole Foods, Google+Fitbit) |
 | `README.md` | You're reading it |
 
@@ -211,25 +213,25 @@ Discuss as a group:
 ## Stretch Goals (If You Finish Early)
 
 - **Add a second bridge:** Sign up at https://console.mistral.ai (free), get an API key, and modify `bridge.py` to call Mistral instead of Cerebras. Now you have 5 models. Was the second acquisition worth it?
-- **Modify the router:** Open `router.py` and change the routing table. Add new task categories. What would YOUR corporate strategy look like?
+- **Modify the router:** Open `router.js` in a text editor and change the routing table. Add new task categories. What would YOUR corporate strategy look like?
 - **Analyze a real deal:** Use your agent to read one of the files in `deals/` and run a full better-off test with synergy NPV calculations.
-- **Break it on purpose:** Unset your API key (`set CEREBRAS_API_KEY=`) and run the bridge. That's what synergy decay looks like.
+- **Break it on purpose:** Unset your API key (`set CEREBRAS_API_KEY=`) and run the bridge again. That's what synergy decay looks like.
 
 ---
 
 ## Troubleshooting
 
-**Before asking your professor:** Copy the error message and paste it into your AI agent. Say "I'm trying to run this Python script and got this error. How do I fix it?" Your AI can probably solve it faster than anyone in the room. That's Processor mode.
-
-### "python is not recognized"
-- Windows: Install Python from https://python.org/downloads. **CHECK "Add Python to PATH"** during install, then restart your terminal.
-- Mac: Try `python3 bridge.py` instead of `python bridge.py`
+### "node is not recognized"
+You need Node.js. You should have it from the vibe coding activity (Chapter 7). If not:
+- **Windows:** Download from https://nodejs.org (LTS version). Install, then restart your terminal.
+- **Mac:** `brew install node` or download from https://nodejs.org
+- **Fallback:** Try `python bridge.py` instead. If you have Python, the Python versions work identically.
 
 ### "CEREBRAS_API_KEY not set"
-You need to set the key every time you open a new terminal. Run the `set` or `export` command from Step 3 again.
+You need to set the key **every time you open a new terminal window**. Run the `set` or `export` command from Step 3 again. This is the #1 issue people hit.
 
 ### "API Error 401"
-Your API key is wrong. Go back to https://cloud.cerebras.ai, check your key, copy it again.
+Your API key is wrong. Go back to https://cloud.cerebras.ai, check your key, copy it again carefully.
 
 ### "API Error 403" or "error code: 1010"
 Cloudflare is blocking the request. This sometimes happens on campus WiFi. Try:
@@ -239,9 +241,6 @@ Cloudflare is blocking the request. This sometimes happens on campus WiFi. Try:
 ### "API Error 429"
 Rate limited. You've sent too many requests too fast. Wait 30 seconds and try again.
 
-### "No module named ..."
-The bridge uses only Python standard library — no pip install needed. If you're getting import errors, your Python installation might be broken. Try reinstalling Python.
-
 ### "git is not recognized"
 Use Option B (download ZIP) from the setup instructions instead.
 
@@ -250,3 +249,6 @@ That's fine! Use the web version of your AI (claude.ai, chatgpt.com, or gemini.g
 
 ### Nothing works at all
 Pair up with someone in your group whose setup is working. Watch what they do. The observation is still valuable — and the fact that integration failed IS the lesson about diversification risk.
+
+### Something else broke
+Copy your error message and paste it into whatever AI you have access to (even just claude.ai or chatgpt.com in a browser). Say: *"I'm trying to run `node bridge.js` and got this error. How do I fix it on Windows."* Your AI can probably solve it faster than anyone in the room. **That's Processor mode in action.**
